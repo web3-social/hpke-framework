@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "composite": true,
+    "target": "ES2020",
+    "lib": ["ES2021", "DOM"],
+    "rootDir": "src",
+    "outDir": "dist",
+    "paths": {
+      "@web3-social/hpke-framework": ["../framework/src"]
+    }
+  },
+  "include": ["./**/*.ts"]
+}

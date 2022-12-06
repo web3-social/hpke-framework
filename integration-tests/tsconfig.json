@@ -1,0 +1,34 @@
+{
+    "compilerOptions": {
+        "composite": true,
+        "target": "ES5",
+        "lib": ["ES2021", "DOM", "DOM.Iterable"],
+        "moduleResolution": "node",
+        "declaration": true,
+        "sourceMap": false,
+        "strict": true,
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "paths": {
+            "@web3-social/hpke-framework": ["../framework/src"],
+            "@web3-social/hpke-hkdf-blake3": ["../hkdf-blake3/src"],
+            "@web3-social/hpke-secp256k1-blake3": ["../secp256k1-blake3/src"],
+            "@web3-social/hpke-chacha20poly1305": ["../chacha20-ploy1305/src"]
+        }
+    },
+    "references": [
+        {
+            "path": "../framework"
+        },
+        {
+            "path": "../hkdf-blake3"
+        },
+        {
+            "path": "../secp256k1-blake3"
+        },
+        {
+            "path": "../chacha20-ploy1305"
+        }
+    ],
+    "include": ["./**/*.ts"]
+}

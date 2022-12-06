@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "composite": true,
+        "target": "ES2015",
+        "lib": ["ES2021", "DOM", "DOM.Iterable"],
+        "moduleResolution": "node",
+        "declaration": true,
+        "sourceMap": false,
+        "strict": true,
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "paths": {
+            "@web3-social/hpke-framework": ["../framework/src"],
+            "@web3-social/hpke-hkdf-blake3": ["../hkdf-blake3/src"]
+        }
+    },
+    "references": [
+        {
+            "path": "../framework"
+        },
+        {
+            "path": "../hkdf-blake3"
+        }
+    ],
+    "include": ["src"]
+}

@@ -1,0 +1,10 @@
+{
+  "private": true,
+  "workspaces": [
+    "framework",
+    "secp256k1-blake3",
+    "hkdf-blake3",
+    "chacha20-poly1305",
+    "integration-tests"
+  ]
+}

@@ -1,0 +1,24 @@
+[package]
+name = "chacha20-poly1305-js-sys"
+version = "0.1.0"
+authors = ["lightsing <light.tsing@gmail.com>"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[features]
+default = ["wee_alloc"]
+
+[dependencies]
+wasm-bindgen = "0.2.83"
+console_error_panic_hook = { version = "0.1.6", optional = true }
+wee_alloc = { version = "0.4.5", optional = true }
+chacha20poly1305 = { version = "0.10.1", default-features = false, features = ["alloc"] }
+js-sys = "0.3.60"
+
+[dev-dependencies]
+wasm-bindgen-test = "0.3.13"
+
+[profile.release]
+opt-level = "s"
