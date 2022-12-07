@@ -56,6 +56,7 @@
     { "path": "./packages/hkdf-blake3" },
     { "path": "./packages/secp256k1-blake3" },
     { "path": "./packages/chacha20-poly1305" },
+    { "path": "./packages/aes-gcm" },
     { "path": "./packages/integration-tests" }
   ],
   "files": []
