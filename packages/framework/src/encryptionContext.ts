@@ -35,7 +35,8 @@ class EncryptionContext {
     }
 
     protected incrementSeq() {
-        if (this.seq >= (1 << (8 * this.aead.nN)) - 1) {
+        // this limits seq to 2^53
+        if (this.seq >= Number.MAX_SAFE_INTEGER) {
             throw new MessageLimitReachedError()
         }
         this.seq += 1

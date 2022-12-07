@@ -15,7 +15,7 @@
         "vitest": "^0.25.4"
     },
     "dependencies": {
-        "@web3-social/hpke-chacha20poly1305": "^0.1.0",
+        "@web3-social/hpke-aes-gcm": "^0.1.0",
         "@web3-social/hpke-framework": "^0.1.0",
         "@web3-social/hpke-hkdf-blake3": "^0.1.0",
         "@web3-social/hpke-secp256k1-blake3": "^0.1.0"

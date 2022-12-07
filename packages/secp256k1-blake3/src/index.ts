@@ -1,10 +1,8 @@
-import { arrayFromAscii, DhKemContext, getCrypto, XCryptoKey } from '@web3-social/hpke-framework';
+import { DhKemContext, XCryptoKey } from '@web3-social/hpke-framework';
 import { HkdfBlake3Factory } from '@web3-social/hpke-hkdf-blake3';
 import * as blake3 from '@web3-social/blake3-hkdf-js';
-import * as secp256k1 from 'secp256k1';
+import * as secp256k1 from '@noble/secp256k1';
 import * as consts from './consts.js';
-
-const crypto = getCrypto();
 
 export class Secp256k1Blake3Kem extends DhKemContext {
     constructor() {
@@ -19,34 +17,19 @@ export class Secp256k1Blake3Kem extends DhKemContext {
     }
 
     public async generateKeyPair(): Promise<CryptoKeyPair> {
-        const rawPrivateKey = new Uint8Array(consts.SECP256K1_PRIVATE_KEY_LENGTH);
-        do {
-            crypto.getRandomValues(rawPrivateKey);
-        } while (!secp256k1.privateKeyVerify(rawPrivateKey));
-        return this.keyPairFromRawPrivateKey(rawPrivateKey);
+        return this.keyPairFromRawPrivateKey(secp256k1.utils.randomPrivateKey());
     }
     public async deriveKeyPair(ikm: Uint8Array): Promise<CryptoKeyPair> {
-        let seq = 0;
-        let rawPrivateKey;
-        do {
-            rawPrivateKey = blake3.hkdf(
-                consts.SECP256K1_PRIVATE_KEY_LENGTH,
-                ikm,
-                undefined,
-                arrayFromAscii('SECP256K1-DERIVED-KEY#' + seq)
-            );
-            seq += 1;
-        } while (!secp256k1.privateKeyVerify(rawPrivateKey));
-        return this.keyPairFromRawPrivateKey(rawPrivateKey);
+        const hash = blake3.hkdf(consts.SECP256K1_PRIVATE_KEY_LENGTH + 16, ikm);
+        return this.keyPairFromRawPrivateKey(secp256k1.utils.hashToPrivateKey(hash));
     }
     public async serializePublicKey(pkX: XCryptoKey): Promise<Uint8Array> {
-        return secp256k1.publicKeyConvert(pkX.key, true);
+        return pkX.key;
     }
     public async deserializePublicKey(pkXm: Uint8Array): Promise<XCryptoKey> {
-        const raw = secp256k1.publicKeyConvert(pkXm, false);
         return new XCryptoKey({
             algorithm: { name: consts.ALGORITHM_NAME },
-            key: raw,
+            key: pkXm,
             type: 'public',
         });
     }
@@ -62,7 +45,7 @@ export class Secp256k1Blake3Kem extends DhKemContext {
     }
 
     public async getPublicKeyFromPrivateKey(pkX: XCryptoKey): Promise<XCryptoKey> {
-        const raw = secp256k1.publicKeyCreate(pkX.key, false);
+        const raw = secp256k1.getPublicKey(pkX.key, true);
         return new XCryptoKey({
             algorithm: { name: consts.ALGORITHM_NAME },
             key: raw,
@@ -80,21 +63,8 @@ export class Secp256k1Blake3Kem extends DhKemContext {
      * @throws ValidationError
      */
     public async dh(skX: XCryptoKey, pkY: XCryptoKey): Promise<Uint8Array> {
-        const output = new Uint8Array(32);
-        secp256k1.ecdh(
-            pkY.key,
-            skX.key,
-            {
-                data: new Uint8Array(64),
-                hashfn: (x, y, data) => {
-                    data.set(x);
-                    data.set(y, 32);
-                    return blake3.hash(data);
-                },
-            },
-            output
-        );
-        return output;
+        const shared = secp256k1.getSharedSecret(skX.key, pkY.key, false);
+        return blake3.hash(shared);
     }
 
     private async keyPairFromRawPrivateKey(rawPrivateKey: Uint8Array): Promise<CryptoKeyPair> {
