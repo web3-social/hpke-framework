@@ -1,22 +1,22 @@
-import type { XCryptoKey } from './xCryptoKey.js';
+import type { XCryptoKey } from './xCryptoKey.js'
 
 export interface KemContext {
     /** The length in bytes of a KEM shared secret produced by this KEM. */
-    readonly nSecret: number;
+    readonly nSecret: number
     /** The length in bytes of an encapsulated key produced by this KEM. */
-    readonly nEnc: number;
+    readonly nEnc: number
     /** The length in bytes of an encoded public key for this KEM. */
-    readonly nPk: number;
+    readonly nPk: number
     /** The length in bytes of an encoded private key for this KEM. */
-    readonly nSk: number;
-    readonly kemId: number;
+    readonly nSk: number
+    readonly kemId: number
 
     /**
      * Randomized algorithm to generate a key pair (skX, pkX)
      *
      * @returns key pair
      */
-    generateKeyPair(): Promise<CryptoKeyPair>;
+    generateKeyPair(): Promise<CryptoKeyPair>
 
     /**
      * Deterministic algorithm to derive a key pair (skX, pkX) from the byte string ikm.
@@ -25,7 +25,7 @@ export interface KemContext {
      * @param ikm
      * @returns key pair
      */
-    deriveKeyPair(ikm: Uint8Array): Promise<CryptoKeyPair>;
+    deriveKeyPair(ikm: Uint8Array): Promise<CryptoKeyPair>
 
     /**
      * Produce a byte string of length `nPk` encoding the public key pkX.
@@ -33,7 +33,7 @@ export interface KemContext {
      * @param pkX public key
      * @returns public key in byte string
      */
-    serializePublicKey(pkX: XCryptoKey): Promise<Uint8Array>;
+    serializePublicKey(pkX: XCryptoKey): Promise<Uint8Array>
 
     /**
      * Parse a byte string of length `nPk` to recover a public key.
@@ -42,7 +42,7 @@ export interface KemContext {
      * @returns XCryptoKey
      * @throws DeserializeError
      */
-    deserializePublicKey(pkXm: Uint8Array): Promise<XCryptoKey>;
+    deserializePublicKey(pkXm: Uint8Array): Promise<XCryptoKey>
 
     /**
      * Produce a byte string of length Nsk encoding the private key skX.
@@ -52,7 +52,7 @@ export interface KemContext {
      * @returns private key in byte string
      * @throws UnsupportedError
      */
-    serializePrivateKey(skX: XCryptoKey): Promise<Uint8Array>;
+    serializePrivateKey(skX: XCryptoKey): Promise<Uint8Array>
 
     /**
      * Parse a byte string of length Nsk to recover a private key.
@@ -63,7 +63,7 @@ export interface KemContext {
      * @throws DeserializeError
      * @throws UnsupportedError
      */
-    deserializePrivateKey(skXm: Uint8Array): Promise<XCryptoKey>;
+    deserializePrivateKey(skXm: Uint8Array): Promise<XCryptoKey>
 
     /**
      * Retrieve public key from private key
@@ -71,7 +71,7 @@ export interface KemContext {
      * @param pkX public key
      * @returns XCryptoKey
      */
-    getPublicKeyFromPrivateKey(pkX: XCryptoKey): Promise<XCryptoKey>;
+    getPublicKeyFromPrivateKey(pkX: XCryptoKey): Promise<XCryptoKey>
 
     /**
      * Randomized algorithm to generate an ephemeral, fixed-length symmetric key (the KEM shared secret)
@@ -82,7 +82,7 @@ export interface KemContext {
      * @returns shared secret and encapsulated representation of shared secret
      * @throws EncapError
      */
-    encap(pkR: XCryptoKey): Promise<{ sharedSecret: Uint8Array; enc: Uint8Array }>;
+    encap(pkR: XCryptoKey): Promise<{ sharedSecret: Uint8Array; enc: Uint8Array }>
 
     /**
      * Deterministic algorithm using the private key skR to recover
@@ -93,7 +93,7 @@ export interface KemContext {
      * @returns shared secret
      * @throws DecapError
      */
-    decap(enc: Uint8Array, skR: XCryptoKey): Promise<Uint8Array>;
+    decap(enc: Uint8Array, skR: XCryptoKey): Promise<Uint8Array>
 
     /**
      * Same as Encap(), and the outputs encode an assurance that the KEM shared secret was generated
@@ -105,7 +105,7 @@ export interface KemContext {
      * @returns shared secret and encapsulated representation of shared secret
      * @throws UnsupportedError
      */
-    authEncap(pkR: XCryptoKey, skS: XCryptoKey): Promise<{ sharedSecret: Uint8Array; enc: Uint8Array }>;
+    authEncap(pkR: XCryptoKey, skS: XCryptoKey): Promise<{ sharedSecret: Uint8Array; enc: Uint8Array }>
 
     /**
      * Same as Decap(), and the recipient is assured that the KEM shared secret was generated
@@ -119,5 +119,5 @@ export interface KemContext {
      * @throws DecapError
      * @throws UnsupportedError
      */
-    authDecap(enc: Uint8Array, skR: XCryptoKey, pkS: XCryptoKey): Promise<Uint8Array>;
+    authDecap(enc: Uint8Array, skR: XCryptoKey, pkS: XCryptoKey): Promise<Uint8Array>
 }
