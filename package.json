@@ -1,10 +1,29 @@
 {
+  "packageManager": "pnpm@7.12.2",
+  "name": "@web3-social/hpke-framework",
   "private": true,
-  "workspaces": [
-    "framework",
-    "secp256k1-blake3",
-    "hkdf-blake3",
-    "chacha20-poly1305",
-    "integration-tests"
-  ]
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "release": "pnpm run build && pnpm run -r build && npx changeset publish",
+    "build": "tsc -b ./tsconfig.json",
+    "build:watch": "tsc -b ./tsconfig.json --watch"
+  },
+  "devDependencies": {
+    "prettier": "^2.8.0",
+    "rollup": "^3.4.0",
+    "typescript": "4.9.3",
+    "vite": "^3.2.4",
+    "vite-plugin-top-level-await": "^1.2.2",
+    "vite-plugin-wasm": "^3.1.0",
+    "vitest": "^0.25.3"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": []
+  },
+  "dependencies": {
+    "@vitest/ui": "^0.25.3"
+  }
 }

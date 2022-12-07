@@ -1,34 +1,62 @@
 {
   "compilerOptions": {
-    "composite": true,
-    "target": "ES2020",
-    "module": "ES2020",
-    "moduleResolution": "Node",
+    // Type Checking
     "strict": true,
-    "sourceMap": false,
-    "allowSyntheticDefaultImports": true,
-    "declaration": true
+    // exactOptionalPropertyTypes: false,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    // noPropertyAccessFromIndexSignature: false,
+    // noUncheckedIndexedAccess: false,
+    // noUnusedLocals: false,
+    // noUnusedParameters: false,
+    "useUnknownInCatchVariables": true,
+
+    // Modules
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+
+    // Emit
+    "declaration": true,
+    "declarationMap": true,
+    "importsNotUsedAsValues": "error",
+    "noEmitOnError": true,
+    "preserveValueImports": true,
+    "sourceMap": true,
+    "stripInternal": true, // skip type emit for @internal types
+
+    // JavaScript Support
+    "allowJs": false,
+    "checkJs": false,
+
+    // Interop Constraints
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+
+    // Language and Environment
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "target": "ES2022",
+    "useDefineForClassFields": true,
+
+    // Projects
+    "composite": true,
+    "incremental": true,
+
+    // Completeness
+    "skipLibCheck": true, // skip all type checks for .d.ts files
+
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "types": []
   },
-  "exclude": [
-    "./**/tests/",
-    "./**/dist/",
-    "./node_modules/"
-  ],
   "references": [
-    {
-      "path": "./framework"
-    },
-    {
-      "path": "./secp256k1-blake3"
-    },
-    {
-      "path": "./hkdf-blake3"
-    },
-    {
-      "path": "./chacha20-ploy1305"
-    },
-    {
-      "path": "./integration-tests"
-    }
-  ]
+    { "path": "./packages/framework" },
+    { "path": "./packages/hkdf-blake3" },
+    { "path": "./packages/secp256k1-blake3" },
+    { "path": "./packages/chacha20-poly1305" },
+    { "path": "./packages/integration-tests" }
+  ],
+  "files": []
 }
