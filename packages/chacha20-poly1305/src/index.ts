@@ -9,7 +9,7 @@ export class Chacha20Ploy1305Aead implements AeadContext {
     public readonly nN: number = 12
     /** The length in bytes of the authentication tag for this algorithm. */
     public readonly nT: number = 16
-    public readonly aeadId: number = 0xff
+    public readonly aeadId: number = 0x0003
 
     /**
      * Encrypt and authenticate plaintext pt with associated data aad
