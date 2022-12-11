@@ -3,6 +3,6 @@
   "compilerOptions": {
     // Modules
     "module": "CommonJS",
-    "moduleResolution": "NodeNext"
+    "moduleResolution": "Node"
   }
 }
