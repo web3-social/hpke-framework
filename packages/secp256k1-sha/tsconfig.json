@@ -1,0 +1,13 @@
+{
+    "extends": "../../tsconfig.cjs.json",
+    "compilerOptions": {
+        "rootDir": "./src/",
+        "outDir": "./dist/cjs",
+        "declarationDir": "./dist/types",
+        "tsBuildInfoFile": "./dist/cjs/.tsbuildinfo",
+        "allowJs": true,
+        "lib": ["DOM", "ESNext"]
+    },
+    "include": ["./src"],
+    "references": []
+}
