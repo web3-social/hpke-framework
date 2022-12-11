@@ -1,4 +1,4 @@
-import { HpkeError, I2OspError, Os2IpError } from './errors.js'
+import { HpkeError, I2OspError, Os2IpError } from './errors'
 
 /**
  * Convert non-negative integer n to a w-length, big-endian byte string, as described in [RFC8017]

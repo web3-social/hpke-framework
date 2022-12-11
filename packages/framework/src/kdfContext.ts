@@ -1,4 +1,4 @@
-import { arrayFromAscii, i2osp, concatUint8Array } from './utils.js'
+import { arrayFromAscii, i2osp, concatUint8Array } from './utils'
 
 export interface KdfFactory {
     kdfId: number

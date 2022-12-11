@@ -1,7 +1,7 @@
-import type { KemContext } from './kemContext.js'
-import type { XCryptoKey } from './xCryptoKey.js'
-import type { KdfContext, KdfFactory } from './kdfContext.js'
-import { arrayFromAscii, i2osp, concatUint8Array } from './utils.js'
+import type { KemContext } from './kemContext'
+import type { XCryptoKey } from './xCryptoKey'
+import type { KdfContext, KdfFactory } from './kdfContext'
+import { arrayFromAscii, i2osp, concatUint8Array } from './utils'
 
 export interface DhKemContextParams {
     /** The length in bytes of a KEM shared secret produced by this KEM. */

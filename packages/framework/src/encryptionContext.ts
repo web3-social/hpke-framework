@@ -1,7 +1,7 @@
-import type { AeadContext } from './aeadContext.js'
-import { arrayFromAscii, i2osp, xor } from './utils.js'
-import { MessageLimitReachedError } from './errors.js'
-import type { KdfContext } from './kdfContext.js'
+import type { AeadContext } from './aeadContext'
+import { arrayFromAscii, i2osp, xor } from './utils'
+import { MessageLimitReachedError } from './errors'
+import type { KdfContext } from './kdfContext'
 
 export interface EncryptionContextParams {
     aead: AeadContext

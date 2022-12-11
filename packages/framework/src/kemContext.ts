@@ -1,4 +1,4 @@
-import type { XCryptoKey } from './xCryptoKey.js'
+import type { XCryptoKey } from './xCryptoKey'
 
 export interface KemContext {
     /** The length in bytes of a KEM shared secret produced by this KEM. */

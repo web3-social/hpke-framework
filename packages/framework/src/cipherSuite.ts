@@ -1,11 +1,11 @@
-import type { KemContext } from './kemContext.js'
-import type { AeadContext } from './aeadContext.js'
-import type { KdfContext, KdfFactory } from './kdfContext.js'
-import { arrayFromAscii, i2osp, concatUint8Array } from './utils.js'
-import { InvalidConfig, PskError } from './errors.js'
-import { ReceiverContext, SenderContext } from './encryptionContext.js'
-import type { EncryptionContextParams } from './encryptionContext.js'
-import type { XCryptoKey } from './xCryptoKey.js'
+import type { KemContext } from './kemContext'
+import type { AeadContext } from './aeadContext'
+import type { KdfContext, KdfFactory } from './kdfContext'
+import { arrayFromAscii, i2osp, concatUint8Array } from './utils'
+import { InvalidConfig, PskError } from './errors'
+import { ReceiverContext, SenderContext } from './encryptionContext'
+import type { EncryptionContextParams } from './encryptionContext'
+import type { XCryptoKey } from './xCryptoKey'
 
 export class HpkeMode {
     static Base = new HpkeMode(0x00)

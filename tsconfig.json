@@ -1,29 +1,18 @@
 {
   "compilerOptions": {
-    // Type Checking
     "strict": true,
-    // exactOptionalPropertyTypes: false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": true,
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    // noPropertyAccessFromIndexSignature: false,
-    // noUncheckedIndexedAccess: false,
-    // noUnusedLocals: false,
-    // noUnusedParameters: false,
     "useUnknownInCatchVariables": true,
-
-    // Modules
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
 
     // Emit
     "declaration": true,
     "declarationMap": true,
     "importsNotUsedAsValues": "error",
     "noEmitOnError": true,
-    "preserveValueImports": true,
     "sourceMap": true,
     "stripInternal": true, // skip type emit for @internal types
 
