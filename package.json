@@ -4,12 +4,16 @@
   "private": true,
   "version": "0.0.0",
   "license": "MIT",
+  "author": {
+    "name": "web3-social",
+    "url": "https://github.com/web3-social"
+  },
   "scripts": {
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "release": "pnpm run build && pnpm run -r build && npx changeset publish",
-    "build": "tsc -b ./tsconfig.json",
-    "build:watch": "tsc -b ./tsconfig.json --watch"
+    "build": "tsc -b ./tsconfig.cjs.json",
+    "build:watch": "tsc -b ./tsconfig.cjs.json --watch"
   },
   "devDependencies": {
     "@vitest/ui": "^0.25.4",

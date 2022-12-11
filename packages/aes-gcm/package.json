@@ -17,6 +17,11 @@
   ],
   "main": "dist/cjs/index.js",
   "typings": "dist/types/index.d.ts",
+  "files": [
+    "dist",
+    "!dist/cjs/.tsbuildinfo",
+    "!dist/esm/.tsbuildinfo"
+  ],
   "scripts": {
     "build": "tsc -b tsconfig.json"
   },
