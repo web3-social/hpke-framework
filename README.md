@@ -42,27 +42,36 @@ new CipherSuite({
 
 ### Standard
 
-KDF:
-  - [HKDF-SHA256/384/512](./packages/hkdf)
+| KDF-ID |     KDF     |                  Package                  |
+|:------:|:-----------:|:-----------------------------------------:|
+| 0x0001 | HKDF-SHA256 | [@web3-social/hpke-hkdf](./packages/hkdf) |
+| 0x0002 | HKDF-SHA384 | [@web3-social/hpke-hkdf](./packages/hkdf) |
+| 0x0003 | HKDF-SHA512 | [@web3-social/hpke-hkdf](./packages/hkdf) |
 
-AEAD:
-  - [AES-256/512-GCM](./packages/aes-gcm)
+| AEAD-ID |    AEAD     |                     Package                     |
+|:-------:|:-----------:|:-----------------------------------------------:|
+| 0x0001  | AES-128-GCM | [@web3-social/hpke-aes-gcm](./packages/aes-gcm) |
+| 0x0002  | AES-256-GCM | [@web3-social/hpke-aes-gcm](./packages/aes-gcm) |
 
 ### Non-standard / Experimental
 
-KEM:
-  - [DHKEM(secp256k1, HKDF-SHA-256)](./packages/secp256k1-sha)
+| KEM-ID |              KEM               |                            Package                             |
+|:------:|:------------------------------:|:--------------------------------------------------------------:|
+| 0x6b32 | DHKEM(secp256k1, HKDF-SHA-256) | [@web3-social/hpke-secp256k1-sha256](./packages/secp256k1-sha) |
 
 ### Broken
 
-KDF:
-  - [HKDF-BLAKE3](./packages/hkdf-blake3)
+| KDF-ID |     KDF     |                         Package                         |
+|:------:|:-----------:|:-------------------------------------------------------:|
+|  N/A   | HKDF-BLAKE3 | [@web3-social/hpke-hkdf-blake3](./packages/hkdf-blake3) |
 
-KEM:
-  - [DHKEM(secp256k1, HKDF-BLAKE3)](./packages/secp256k1-blake3)
+| KEM-ID |              KEM              |                              Package                              |
+|:------:|:-----------------------------:|:-----------------------------------------------------------------:|
+|  N/A   | DHKEM(secp256k1, HKDF-BLAKE3) | [@web3-social/hpke-secp256k1-blake3](./packages/secp256k1-blake3) |
 
-AEAD:
-  - [ChaCha20Poly1305](./packages/chacha20-poly1305)
+| AEAD-ID |       AEAD       |                              Package                               |
+|:-------:|:----------------:|:------------------------------------------------------------------:|
+| 0x0003  | ChaCha20Poly1305 | [@web3-social/hpke-chacha20poly1305](./packages/chacha20-poly1305) |
 
 ### Standard HPKE Components Identifiers
 
