@@ -41,6 +41,7 @@
     "types": []
   },
   "references": [
+    { "path": "./packages/blake3" },
     { "path": "./packages/framework" },
     { "path": "./packages/hkdf" },
     { "path": "./packages/hkdf-blake3" },
