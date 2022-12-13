@@ -1,5 +1,5 @@
-import { Secp256k1Blake3Kem } from '../src/index.js'
-import * as consts from '../src/consts.js'
+import { Secp256k1Blake3Kem } from '../src/index'
+import * as consts from '../src/consts'
 import { arrayFromHex, XCryptoKey } from '@web3-social/hpke-framework'
 import { assert, describe, it } from 'vitest'
 

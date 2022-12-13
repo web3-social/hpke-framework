@@ -1,8 +1,10 @@
+import { Blake3 } from '@web3-social/blake3'
 import { DhKemContext, XCryptoKey } from '@web3-social/hpke-framework'
 import { HkdfBlake3Factory } from '@web3-social/hpke-hkdf-blake3'
-import * as blake3 from '@web3-social/blake3-hkdf-js'
 import * as secp256k1 from '@noble/secp256k1'
-import * as consts from './consts.js'
+import * as consts from './consts'
+
+const hkdf = HkdfBlake3Factory(new Uint8Array())
 
 export class Secp256k1Blake3Kem extends DhKemContext {
     constructor() {
@@ -20,8 +22,13 @@ export class Secp256k1Blake3Kem extends DhKemContext {
         return this.keyPairFromRawPrivateKey(secp256k1.utils.randomPrivateKey())
     }
     public async deriveKeyPair(ikm: Uint8Array): Promise<CryptoKeyPair> {
-        const hash = blake3.hkdf(consts.SECP256K1_PRIVATE_KEY_LENGTH + 16, ikm)
-        return this.keyPairFromRawPrivateKey(secp256k1.utils.hashToPrivateKey(hash))
+        const prk = await hkdf.extract(ikm, new Uint8Array())
+        const okm = await hkdf.expand(
+            prk,
+            consts.SECP256K1_BLAKE3_DERIVE_INFO,
+            consts.SECP256K1_PRIVATE_KEY_LENGTH + 16,
+        )
+        return this.keyPairFromRawPrivateKey(secp256k1.utils.hashToPrivateKey(okm))
     }
     public async serializePublicKey(pkX: XCryptoKey): Promise<Uint8Array> {
         return pkX.key
@@ -64,7 +71,7 @@ export class Secp256k1Blake3Kem extends DhKemContext {
      */
     public async dh(skX: XCryptoKey, pkY: XCryptoKey): Promise<Uint8Array> {
         const shared = secp256k1.getSharedSecret(skX.key, pkY.key, false)
-        return blake3.hash(shared)
+        return Blake3.hash(shared)
     }
 
     private async keyPairFromRawPrivateKey(rawPrivateKey: Uint8Array): Promise<CryptoKeyPair> {

@@ -1,0 +1,46 @@
+{
+    "case": [
+        {
+            "description": "empty",
+            "key": "",
+            "msg": "",
+            "hmac": "c8366b212fa0d095e99d6fe861bd554187714942aab92d9f02dbccb9d896e219"
+        },
+        {
+            "description": "empty key",
+            "key": "",
+            "msg": "0102030405060708090a0b0c0d0e0f10111213141516171819",
+            "hmac": "97d3808bc6b2841ba0454657e0d3f4e498562cdd8f997bcbfc2c99830e527197"
+        },
+        {
+            "description": "empty msg",
+            "key": "0102030405060708090a0b0c0d0e0f10111213141516171819",
+            "msg": "",
+            "hmac": "0e769b2c2c6d289dbc9134187445d97217541aa7556fa0674705a0f2c1c5559d"
+        },
+        {
+            "description": "basic",
+            "key": "0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b0b",
+            "msg": "4869205468657265",
+            "hmac": "0bd71bad2f522a89551e0246a42cd24e960641c71195f33df08ead6af3bbeccb"
+        },
+        {
+            "description": "Test with a key shorter than the length of the HMAC output.",
+            "key": "4a656665",
+            "msg": "7768617420646f2079612077616e7420666f72206e6f7468696e673f",
+            "hmac": "732da99ccc24e277b2fec6c42e0f29f1093689ff0821de4df22f7faec5168776"
+        },
+        {
+            "description": "Test with a combined length of key and data that is larger than 64 bytes (= block-size of BLAKE3).",
+            "key": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "msg": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "hmac": "adac5d740792ebf261cfbedb611d31fbb4c9143368e5290f82126e2fa158aa21"
+        },
+        {
+            "description": "Test with a combined length of key and data that is larger than 64 bytes (= block-size of BLAKE3).",
+            "key": "0102030405060708090a0b0c0d0e0f10111213141516171819",
+            "msg": "cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd",
+            "hmac": "2bf558f62611ed3ba3e8d0607bb5d81a40aa175cf8f2d28127c34aa10a5731f1"
+        }
+    ]
+}
